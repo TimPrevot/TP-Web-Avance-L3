@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exo TP1 WEB</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+<header>
+    <img alt="logo" class="logo" src="Logo Kho Lanta.png">
+    <h1>Les équipes de Koh Lanta </h1>
+</header>
+<main>
+    <div id="articles">
+        <article id="article1" style="background-image: url('img/article1.png')">
+            <img onclick="supprimerArticle(event)" src="img/close.png">
+            <h2> L'équipe du Ch'nord : Les Vualiku (violet) </h2>
+            <p>Corps article 1</p>
+        </article>
+        <article id="article2" style="background-image: url('img/article2.png')">
+            <img onclick="supprimerArticle(event)" src="img/close.png">
+            <h2>L'équipe du Sud : Les Ceva (bleu)</h2>
+            <p>Corps article 2</p>
+        </article>
+        <article id="article3" style="background-image: url('img/article3.png')">
+            <img onclick="supprimerArticle(event)" src="img/close.png">
+            <h2>L'équipe de l'Ouest : les Vakara (orange)</h2>
+            <p>Corps article 3</p>
+        </article>
+        <article id="article4" style="background-image: url('img/article4.png')">
+            <img onclick="supprimerArticle(event)" src="img/close.png">
+            <h2>L'équipe de l'Est : les Tokalo (vert)</h2>
+            <p>Corps article 3</p>
+        </article>
+    </div>
+    <div id="form">
+        <h2> Ajouter un article :</h2>
+        <form onsubmit="return false">
+            <label for="formtitre">Titre</label><input id="formtitre" placeholder="votre titre" type="text">
+            <label for="formcorps">Corps</label><textarea id="formcorps" placeholder="votre corps"></textarea>
+            <label for="formpictureurl">Url image</label><input id="formpictureurl" placeholder="https://example.com" type="url">
+            <button onclick="ajouterDepuisFormulaire()" type="button">Envoyer</button>
+        </form>
+    </div>
+</main>
+<footer>
+    <p>PIEDVACHE Alexandre - PREVOT Timothé - MIRGAINE Julien </p>
+</footer>
+
+<script>
+    const articles = [{nom: "Super titre", msg: "Lorem Ipsum", imgUrl: "url"}];
+
+    articles.forEach(add);
+
+
+    function add(article) {
+        ajouter(article.nom, article.msg, article.imgUrl)
+    }
+
+    // La fonction pour ajouter un article dans le HTML
+    function ajouter(titre, msg, imgUrl) {
+
+        var h2 = document.createElement('h2');
+        var texte = document.createElement('p');
+        // ...
+        let m = document.querySelector('#articles');
+        let newArticle = document.createElement('article');
+
+        h2.textContent = titre;
+        texte.textContent = msg;
+        newArticle.style.backgroundImage = 'url('+imgUrl+')';
+        // ....
+
+        m.append(newArticle);
+        newArticle.append(h2);
+        newArticle.append(texte);
+    }
+
+
+
+    function ajouterDepuisFormulaire(){
+
+        var titre = document.getElementById("formtitre").value;
+        var msg = document.getElementById("formcorps").value;
+        var url = document.getElementById("formpictureurl").value;
+
+            ajouter(titre, msg, url);
+
+        document.getElementById('formtitre').value = "";
+        document.getElementById('formcorps').value = "";
+        document.getElementById('formpictureurl').value = "";
+}
+
+    function supprimerArticle(evt) {
+      evt.srcElement.parentNode.remove(evt.srcElement.parentNode)
+    }
+</script>
+</body>
+</html>
