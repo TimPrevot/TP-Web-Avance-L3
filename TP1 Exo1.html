@@ -156,34 +156,44 @@
 
 <script>
 
-    function ajouter() {
-        var titre = document.getElementById("titre").value;
-        var msg = document.getElementById("msg").value;
-        var url = document.getElementById("url").value;
+    const articles = [{nom: "Super titre", msg: "Lorem Ipsum", imgUrl: "https://.....png"}];
+    articles.forEach(add);
+
+
+    function add(article) {
+        ajouter(article.nom, article.msg, article.imgUrl)
+    }
+
+// La fonction pour ajouter un article dans le HTML
+    function ajouter(titre, msg, imgUrl) {
 
         var h2 = document.createElement('h2');
         var texte = document.createElement('p');
-        var img = document.createElement('img');
-
+        // ...
         let m = document.querySelector('#articles');
         let newArticle = document.createElement('article');
 
         h2.textContent = titre;
         texte.textContent = msg;
-        newArticle.style.backgroundImage = 'url(' + url + ')';
-
+        img.newArticle.style.backgroundImage = 'url('+imgUrl+')';
+        // ....
 
         m.append(newArticle);
         newArticle.append(h2);
         newArticle.append(texte);
+    }
+
+
+    function ajouterDepuisFormulaire(){
+        var titre = document.getElementById("titre").value;
+        var msg = document.getElementById("msg").value;
+        var url = document.getElementById("url").value;
+
+        ajouter(titre, msg, url);
 
         document.getElementById('titre').value = "";
         document.getElementById('msg').value = "";
         document.getElementById('url').value = "";
-    }
-
-    function supprimer(evt) {
-        evt.parentNode.removeChild(evt);
     }
 
 </script>
